@@ -65,7 +65,7 @@ host-mode: auto
 # The default logging directory.  Any log or output file will be
 # placed here if its not specified with a full path name.  This can be
 # overridden with the -l command line parameter.
-default-log-dir: /data/suricata/log/
+default-log-dir: /data/suricata-telescope/log/
 
 # Unix command socket can be used to pass commands to suricata.
 # An external tool can then connect to get information from suricata
@@ -119,12 +119,12 @@ outputs:
       types:
         - alert:
             # payload: yes           # enable dumping payload in Base64
-            # payload-printable: yes # enable dumping payload in printable (lossy) format
+            payload-printable: yes # enable dumping payload in printable (lossy) format
             # packet: yes            # enable dumping of packet (without stream segments)
-            http: yes              # enable dumping of http fields
-            tls: yes               # enable dumping of tls fields
-            ssh: yes               # enable dumping of ssh fields
-            smtp: yes              # enable dumping of smtp fields
+            http: no              # enable dumping of http fields
+            tls: no               # enable dumping of tls fields
+            ssh: no               # enable dumping of ssh fields
+            smtp: no              # enable dumping of smtp fields
 
             # HTTP X-Forwarded-For support by adding an extra field or overwriting
             # the source or destination IP address (depending on flow direction)
@@ -132,7 +132,7 @@ outputs:
             # helpful when reviewing alerts for traffic that is being reverse
             # or forward proxied.
             xff:
-              enabled: yes
+              enabled: no
               # Two operation modes are available, "extra-data" and "overwrite".
               mode: extra-data
               # Two proxy deployments are supported, "reverse" and "forward". In
@@ -144,20 +144,20 @@ outputs:
               # one taken into consideration.
               header: X-Forwarded-For
         - http:
-            extended: yes     # enable this for extended logging information
+            extended: no     # enable this for extended logging information
             # custom allows additional http fields to be included in eve-log
             # the example below adds three additional fields when uncommented
             custom: [Accept-Encoding, Accept-Language, Authorization]
         - dns
         - tls:
-            extended: yes     # enable this for extended logging information
+            extended: no     # enable this for extended logging information
         - files:
-            force-magic: yes   # force logging magic on all logged files
+            force-magic: no   # force logging magic on all logged files
             force-md5: no     # force logging of md5 checksums
         #- drop:
         #    alerts: no       # log alerts that caused drops
         - smtp:
-            extended: yes # enable this for extended logging information
+            extended: no # enable this for extended logging information
             # this includes: bcc, message-id, subject, x_mailer, user-agent
             # custom fields logging from the list:
             #  reply-to, bcc, message-id, subject, x-mailer, user-agent, received,
@@ -1294,19 +1294,19 @@ pcre:
 app-layer:
   protocols:
     tls:
-      enabled: yes
+      enabled: no
       detection-ports:
         dp: 443
 
       #no-reassemble: yes
     dcerpc:
-      enabled: yes
+      enabled: no
     ftp:
-      enabled: yes
+      enabled: no
     ssh:
-      enabled: yes
+      enabled: no
     smtp:
-      enabled: yes
+      enabled: no
       # Configure SMTP-MIME Decoder
       mime:
         # Decode MIME messages from SMTP transactions
@@ -1334,11 +1334,11 @@ app-layer:
         content-inspect-min-size: 1000
         content-inspect-window: 1000
     imap:
-      enabled: detection-only
+      enabled: no
     msn:
-      enabled: detection-only
+      enabled: no
     smb:
-      enabled: yes
+      enabled: no
       detection-ports:
         dp: 139
     # Note: Modbus probe parser is minimalist due to the poor significant field
@@ -1372,7 +1372,7 @@ app-layer:
       #request-flood: 500
 
       tcp:
-        enabled: yes
+        enabled: no
         detection-ports:
           dp: 53
       udp:
@@ -1380,7 +1380,7 @@ app-layer:
         detection-ports:
           dp: 53
     http:
-      enabled: yes
+      enabled: no
       # memcap: 64mb
 
       ###########################################################################

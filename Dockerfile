@@ -13,11 +13,7 @@ RUN echo "deb http://ppa.launchpad.net/oisf/suricata-stable/ubuntu trusty main" 
 ENV DEBIAN_FRONTEND noninteractive
 
 # Install packages
-RUN apt-get install -y supervisor suricata wget make gcc libpcap-dev libjansson-dev git && \
-    cd /opt/ && \
-    git clone https://github.com/t3chn0m4g3/p0f -b json-logging && \
-    cd p0f && \
-    ./build.sh
+RUN apt-get install -y supervisor suricata wget make gcc libpcap-dev libjansson-dev git
 
 # Setup user, groups and configs
 RUN addgroup --gid 2000 tpot && \
@@ -26,7 +22,7 @@ ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD suricata.yaml /etc/suricata/suricata.yaml
 
 # Download the latest EmergingThreats ruleset
-RUN wget --no-parent -l1 -r --no-directories -P /etc/suricata/rules/ https://rules.emergingthreats.net/open/suricata/rules/
+#RUN wget --no-parent -l1 -r --no-directories -P /etc/suricata/rules/ https://rules.emergingthreats.net/open/suricata/rules/
 
 # Clean up
 RUN apt-get remove -y make gcc libpcap-dev libjansson-dev git && \
