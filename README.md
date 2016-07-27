@@ -1,8 +1,14 @@
 # dockerized suricata as a network telescope
 
-[suricata](http://suricata-ids.org/) is a Network IDS, IPS and Network Security Monitoring engine.
+* * *
 
-The logging mechanism in Suricata is ideal for implementing the concept of a network telescope a.k.a. internet background noise monitor a.k.a. darknet a.k.a. greynet::
+work in progress
+
+* * *
+
+[Suricata](http://suricata-ids.org/) is a Network IDS, IPS and Network Security Monitoring engine.
+
+The logging mechanism in Suricata is ideal for implementing the concept of a network telescope a.k.a. internet background noise monitor a.k.a. darknet a.k.a. greynet:
 set up in an unused ip address space, Suricata can record access to the network and log the packet details in it's JSON EVE log for further analysis.
 
 In this particular setup the following specifics and restrictions apply:
