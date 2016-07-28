@@ -65,7 +65,7 @@ host-mode: auto
 # The default logging directory.  Any log or output file will be
 # placed here if its not specified with a full path name.  This can be
 # overridden with the -l command line parameter.
-default-log-dir: /data/suricata-telescope/log/
+default-log-dir: /data/suritelescope/log/
 
 # Unix command socket can be used to pass commands to suricata.
 # An external tool can then connect to get information from suricata
